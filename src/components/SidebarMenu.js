@@ -9,7 +9,6 @@ import Menu from 'grommet/components/Menu';
 export default class SidebarMenu extends React.Component {
   render(){
     return(
-
       <Sidebar colorIndex='neutral-1'>
         <Header pad='medium'
           justify='between'>
@@ -32,7 +31,6 @@ export default class SidebarMenu extends React.Component {
           </Menu>
         </Box>
       </Sidebar>
-
     );
   }
 }

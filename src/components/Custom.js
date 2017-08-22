@@ -1,47 +1,39 @@
 import React from "react";
-import Table from 'grommet/components/Table';
-import TableRow from 'grommet/components/TableRow';
-import TableHeader from 'grommet/components/TableHeader';
-
-
+import WorldMap from 'grommet/components/WorldMap';
 
 export default class MyForm extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.name = "Djordje";
-  // }
-
   render(){
     return(
-      <Table>
-        <TableHeader labels={['Name', 'Last Name', 'Email', 'Address', 'Phone Number']} />
-        <tbody>
-          <TableRow>
-            <td>
-              Alan
-            </td>
-            <td>
-              plays accordion
-            </td>
-          </TableRow>
-          <TableRow>
-            <td>
-              Chris
-            </td>
-            <td>
-              drops the mic
-            </td>
-          </TableRow>
-          <TableRow>
-            <td>
-              Tracy
-            </td>
-            <td>
-              travels the world
-            </td>
-          </TableRow>
-        </tbody>
-      </Table>
+      <div className='backgroundColor'>
+      <WorldMap series={[{
+        "continent": "NorthAmerica",
+        "label": "North America",
+        "colorIndex": "graph-1",
+        }, {
+        "continent": "SouthAmerica",
+        "label": "South America",
+        "colorIndex": "accent-2",
+        }, {
+        "continent": "Europe",
+        "label": "Europe",
+        "colorIndex": "unset",
+        }, {
+        "continent": "Africa",
+        "label": "Africa",
+        "colorIndex": "graph-2",
+        }, {
+        "continent": "Asia",
+        "label": "Asia",
+        "colorIndex": "graph-3",
+        // "onClick": "..."
+        }, {
+        "continent": "Australia",
+        "label": "Australia",
+        "colorIndex": "graph-4",
+        // "onClick": "..."
+        }]}
+      colorIndex='' />
+      </div>
 
     );
   }

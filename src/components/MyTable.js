@@ -1,9 +1,8 @@
 import React from 'react';
 import Table from 'grommet/components/Table';
-import TableRow from 'grommet/components/TableRow';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRows from './TableRows';
-import $ from 'jquery';
+import Request from 'superagent';
 
 
 
@@ -11,35 +10,29 @@ export default class MyTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {users: []};
-    this.UserList = this.UserList.bind(this);
-
-    this.UserList();
   }
 
-  componentDidMount() {
-    this.UserList();
-    // console.log('component mounted');
+  componentWillMount() {
+    this.fetchUsers();
   }
 
-  UserList() {
-    return $.getJSON('https://jsonplaceholder.typicode.com/albums')
-      .then((data) => {
-        this.setState({ users: data });
-        //console.log(this.state.users);
+  fetchUsers() {
+    let url = "https://jsonplaceholder.typicode.com/albums";
+    Request.get(url).then((data) => {
+      this.setState({
+        users: data.body
       });
-
-
+    });
   }
 
   render(){
     return(
-      <Table>
-        <TableHeader labels={['UserID', 'Title', 'ID']} />
-
+      <div className='table-holder'>
+        <Table className='table-holder'>
+          <TableHeader labels={['UserID', 'Title', 'ID']} />
           <TableRows userData={this.state.users} />
-
-      </Table>
-
+        </Table>
+      </div>
     );
   }
 }
