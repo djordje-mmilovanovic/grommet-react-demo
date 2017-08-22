@@ -29,23 +29,38 @@ export default class MyForm extends React.Component {
         pass: false
       },
       phoneNumber: {
-        value: '',
+        value: '+386',
         pass: false
-    }
+      }
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   clearFields() {      // clears all except the last input
-    let elements = document.getElementsByClassName('inputFields');
-    for(let key in elements) {
-      if(key == 'phoneNumberValue') {
-        elements[key].value = '+386';
-      } else {
-        elements[key].value = '';
+    this.setState({
+      name: {
+        value: '',
+        pass: false
+      },
+      lastName: {
+        value: '',
+        pass: false
+      },
+      email: {
+        value: '',
+        pass: false
+      },
+      address: {
+        value: '',
+        pass: false
+      },
+      phoneNumber: {
+        value: '+386',
+        pass: false
       }
-    }
+    });
+
   }
 
   handleInputChange(event) {
@@ -127,19 +142,19 @@ export default class MyForm extends React.Component {
       <div className='form-holder'>
         <Form>
           <FormField label='Name' id='nameField' className='input-field'>
-            <TextInput placeHolder='Enter your Name' maxLength='20' name='name' onChange={this.handleInputChange} className='inputFields'/>
+            <TextInput placeHolder='Enter your Name' maxLength='20' name='name' value={this.state.name.value} onChange={this.handleInputChange} className='inputFields'/>
           </FormField>
           <FormField label='Last Name' className='input-field'>
-            <TextInput  placeHolder='Enter your Last Name' maxLength='20' name='lastName' onChange={this.handleInputChange} className='inputFields'/>
+            <TextInput  placeHolder='Enter your Last Name' maxLength='20' name='lastName' value={this.state.lastName.value} onChange={this.handleInputChange} className='inputFields'/>
           </FormField>
           <FormField label='Email' className='input-field'>
-            <TextInput placeHolder='Enter your Email' maxLength='20' name='email' onChange={this.handleInputChange} className='inputFields'/>
+            <TextInput placeHolder='Enter your Email' maxLength='20' name='email' value={this.state.email.value} onChange={this.handleInputChange} className='inputFields'/>
           </FormField>
           <FormField label='Address' className='input-field'>
-            <TextInput placeHolder='Enter your Addresss' maxLength='20' name='address' onChange={this.handleInputChange} className='inputFields'/>
+            <TextInput placeHolder='Enter your Addresss' maxLength='20' name='address' value={this.state.address.value} onChange={this.handleInputChange} className='inputFields'/>
           </FormField>
           <FormField label='Phone number' className='input-field'>
-            <TextInput defaultValue='+386'  maxLength='20' name='phoneNumber' onChange={this.handleInputChange} className='inputFields'/>
+            <TextInput maxLength='20' name='phoneNumber' value={this.state.phoneNumber.value} onChange={this.handleInputChange} className='inputFields'/>
           </FormField>
           <Footer pad={{"vertical": "medium"}}>
             <Button label='Submit'
