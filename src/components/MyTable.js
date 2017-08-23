@@ -2,9 +2,8 @@ import React from 'react';
 import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRows from './TableRows';
-import Request from 'superagent';
 
-
+import { processStatus } from 'grommet/utils/Rest';
 
 export default class MyTable extends React.Component {
   constructor(props) {
@@ -18,11 +17,15 @@ export default class MyTable extends React.Component {
 
   fetchUsers() {
     let url = "https://jsonplaceholder.typicode.com/albums";
-    Request.get(url).then((data) => {
-      this.setState({
-        users: data.body
-      });
-    });
+    this._getData(url);
+  }
+
+  _getData (url) {
+    const options = { method: 'GET' };
+    fetch(url, options)
+    .then(processStatus)
+    .then(response => response.json())
+    .then(result => this.setState({ users: result }));
   }
 
   render(){
